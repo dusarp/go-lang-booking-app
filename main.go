@@ -16,7 +16,8 @@ func main() {
 
 	var userName string
 	// ask user for their name
-	userName = "Alice"
+	fmt.Scan(&userName) //a & jel a pointert jelenti
+
 	userTicket := 2 //ez itt azert mukodik mivel nem konstans es nincs megadva a tipus
 	fmt.Printf("User %v booked %v tickets.\n", userName, userTicket)
 }
