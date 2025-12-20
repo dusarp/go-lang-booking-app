@@ -17,6 +17,6 @@ func main() {
 	var userName string
 	// ask user for their name
 	userName = "Alice"
-	userTicket := 2
+	userTicket := 2 //ez itt azert mukodik mivel nem konstans es nincs megadva a tipus
 	fmt.Printf("User %v booked %v tickets.\n", userName, userTicket)
 }
