@@ -18,6 +18,9 @@ func main() {
 	bookings[2] = "Arpad"
 	bookings[3] = "Doe"
 
+	//igy jobb, mivel van first name es last name is
+	bookings[4] = firstName + " " + lastName
+
 	// 1. Initial greeting
 	fmt.Println("Welcome to the Conference Booking System!")
 	fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
@@ -34,6 +37,11 @@ func main() {
 
 	fmt.Print("How many tickets would you like to buy? ")
 	fmt.Scan(&userTickets)
+
+	// print some array elements
+	fmt.Printf("The bookings are: %v\n", bookings
+	fmt.Printf("The second booking is: %v\n", bookings[1])
+	fmt.Printf("The number of bookings is: %v\n", number of elements)
 
 	// 3. Logic to calculate and display results
 	if userTickets <= remainingTickets && userTickets > 0 {
