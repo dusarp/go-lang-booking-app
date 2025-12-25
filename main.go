@@ -39,9 +39,9 @@ func main() {
 	fmt.Scan(&userTickets)
 
 	// print some array elements
-	fmt.Printf("The bookings are: %v\n", bookings
+	fmt.Printf("The bookings are: %v\n", bookings)
 	fmt.Printf("The second booking is: %v\n", bookings[1])
-	fmt.Printf("The number of bookings is: %v\n", number of elements)
+	fmt.Printf("The number of bookings is: %v\n", len(bookings))
 
 	// 3. Logic to calculate and display results
 	if userTickets <= remainingTickets && userTickets > 0 {
