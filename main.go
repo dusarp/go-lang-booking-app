@@ -11,6 +11,8 @@ func main() {
 	var email string
 	var userTickets int
 
+	var bookings = [50]string{} //go ban meg kell hatarozni hogy mennyi elemu lehet benne, meg a type homogen kell hogy legyen
+
 	// 1. Initial greeting
 	fmt.Println("Welcome to the Conference Booking System!")
 	fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
