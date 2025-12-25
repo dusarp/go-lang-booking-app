@@ -12,6 +12,11 @@ func main() {
 	var userTickets int
 
 	var bookings = [50]string{} //go ban meg kell hatarozni hogy mennyi elemu lehet benne, meg a type homogen kell hogy legyen
+	//vagy booking [50]string
+	bookings[0] = "Nana"
+	bookings[1] = "Ana"
+	bookings[2] = "Arpad"
+	bookings[3] = "Doe"
 
 	// 1. Initial greeting
 	fmt.Println("Welcome to the Conference Booking System!")
