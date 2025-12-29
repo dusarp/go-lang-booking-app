@@ -12,12 +12,6 @@ func main() {
 	var userTickets int
 	var bookings []string
 
-	//slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
-
-	//igy jobb, mivel van first name es last name is
-
-	bookings = append(bookings, firstName+" "+lastName)
-
 	// 1. Initial greeting
 	fmt.Println("Welcome to the Conference Booking System!")
 	fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
@@ -35,10 +29,16 @@ func main() {
 	fmt.Print("How many tickets would you like to buy? ")
 	fmt.Scan(&userTickets)
 
+	// slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
+
+	//igy jobb, mivel van first name es last name is
+
+	bookings = append(bookings, firstName+" "+lastName)
+
 	// print some array elements
 	fmt.Printf("The bookings are: %v\n", bookings)
-	fmt.Printf("The second booking is: %v\n", bookings[1])
-	fmt.Printf("The number of bookings is: %v\n", len(bookings))
+	fmt.Printf("The first booking is: %v\n", bookings[0])
+	fmt.Printf("The slice length is: %v\n", len(bookings))
 
 	// 3. Logic to calculate and display results
 	if userTickets <= remainingTickets && userTickets > 0 {
