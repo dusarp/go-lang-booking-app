@@ -10,18 +10,13 @@ func main() {
 	var lastName string
 	var email string
 	var userTickets int
-
-	var bookings = [50]string{} //go ban meg kell hatarozni hogy mennyi elemu lehet benne, meg a type homogen kell hogy legyen
-	//vagy booking [50]string
-	bookings[0] = "Nana"
-	bookings[1] = "Ana"
-	bookings[2] = "Arpad"
-	bookings[3] = "Doe"
+	var bookings []string
 
 	//slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
 
 	//igy jobb, mivel van first name es last name is
-	bookings[4] = firstName + " " + lastName
+
+	bookings = append(bookings, firstName+" "+lastName)
 
 	// 1. Initial greeting
 	fmt.Println("Welcome to the Conference Booking System!")
