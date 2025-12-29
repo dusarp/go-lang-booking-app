@@ -18,6 +18,8 @@ func main() {
 	bookings[2] = "Arpad"
 	bookings[3] = "Doe"
 
+	//slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
+
 	//igy jobb, mivel van first name es last name is
 	bookings[4] = firstName + " " + lastName
 
