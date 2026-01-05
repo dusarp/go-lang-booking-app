@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	// Define constants and variables
@@ -37,9 +40,6 @@ func main() {
 
 		bookings = append(bookings, firstName+" "+lastName)
 
-		// print some array elements
-		fmt.Printf("The bookings are: %v\n", bookings)
-		fmt.Printf("The first booking is: %v\n", bookings[0])
 		fmt.Printf("The slice length is: %v\n", len(bookings))
 
 		// 3. Logic to calculate and display results
@@ -49,6 +49,13 @@ func main() {
 			fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
 			fmt.Printf("A confirmation email has been sent to %v.\n", email)
 			fmt.Printf("There are %v tickets still available.\n", remainingTickets)
+
+			firstNames := []string{}
+			for _, booking := range bookings { // _ means we dont want to use that variable
+				var names = strings.Fields(booking)
+				firstNames = append(firstNames, names[0])
+			}
+			fmt.Printf("The first names of bookings so far: %v\n", firstNames)
 
 			// Check if all tickets are sold out
 			if remainingTickets == 0 {
