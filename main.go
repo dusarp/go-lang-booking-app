@@ -37,7 +37,8 @@ func main() {
 		//validation
 		var isValidName:= len(firstName) >= 2 && len(lastName) >= 2
 		var isValidEmail := strings.Contains(email, "@")
-		
+		var isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+		var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
 
 		// slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
 
@@ -48,7 +49,7 @@ func main() {
 		fmt.Printf("The slice length is: %v\n", len(bookings))
 
 		// 3. Logic to calculate and display results
-		if userTickets <= remainingTickets && userTickets > 0 {
+		if  {
 			remainingTickets = remainingTickets - userTickets
 
 			fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
