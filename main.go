@@ -11,7 +11,7 @@ func main() {
 	var remainingTickets int = 50
 	var bookings []string //this is a dynamic array (slice)
 
-	for {
+	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
 		var lastName string
 		var email string
