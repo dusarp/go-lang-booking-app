@@ -34,6 +34,11 @@ func main() {
 		fmt.Print("How many tickets would you like to buy? ")
 		fmt.Scan(&userTickets)
 
+		//validation
+		var isValidName:= len(firstName) >= 2 && len(lastName) >= 2
+		var isValidEmail := strings.Contains(email, "@")
+		
+
 		// slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
 
 		//igy jobb, mivel van first name es last name is
