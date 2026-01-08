@@ -70,7 +70,7 @@ func main() {
 				break
 			}
 		} else {
-			fmt.Printf("\nSorry, we cannot fulfill that request. We only have %v tickets left.\n", remainingTickets)
+			fmt.Println("Your input is invalid. Please try again.")
 		}
 	}
 
