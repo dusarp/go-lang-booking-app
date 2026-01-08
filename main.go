@@ -7,9 +7,12 @@ import (
 
 func main() {
 	// Define constants and variables
+	conferenceName := "Go conference"
 	const totalTickets int = 50
 	var remainingTickets int = 50
 	var bookings []string //this is a dynamic array (slice)
+
+	greetUsers(conferenceName)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
@@ -35,9 +38,9 @@ func main() {
 		fmt.Scan(&userTickets)
 
 		//validation
-		var isValidName:= len(firstName) >= 2 && len(lastName) >= 2
-		var isValidEmail := strings.Contains(email, "@")
-		var isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+		var isValidName = len(firstName) >= 2 && len(lastName) >= 2
+		var isValidEmail = strings.Contains(email, "@")
+		var isValidTicketNumber = userTickets > 0 && userTickets <= remainingTickets
 		//var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
 		//var isInValidCity := city != "Singapore" && city != "London" && city != "Berlin"
 
@@ -83,4 +86,8 @@ func main() {
 		}
 	}
 
+}
+
+func greetUsers(confName string) {
+	fmt.Printf("Welcome to %v booking application\n", confName)
 }
