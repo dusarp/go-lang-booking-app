@@ -13,6 +13,7 @@ func main() {
 	var bookings []string //this is a dynamic array (slice)
 
 	greetUsers(conferenceName, totalTickets)
+	getFirstNames(bookings)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
@@ -59,7 +60,8 @@ func main() {
 			fmt.Printf("A confirmation email has been sent to %v.\n", email)
 			fmt.Printf("There are %v tickets still available.\n", remainingTickets)
 
-			getFirstNames(bookings)
+			firstNames := getFirstNames(bookings)
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
 			// Check if all tickets are sold out
 			if remainingTickets == 0 {
@@ -89,11 +91,12 @@ func greetUsers(confName string, totalTickets int) {
 }
 
 // Function to get first names from bookings
-func getFirstNames(bookings []string) {
+func getFirstNames(bookings []string) []string {
 	firstNames := []string{}
 	for _, booking := range bookings { // _ means we dont want to use that variable
 		var names = strings.Fields(booking)
 		firstNames = append(firstNames, names[0])
 	}
-	fmt.Printf("The first names of bookings so far: %v\n", firstNames)
+	return firstNames
+
 }
