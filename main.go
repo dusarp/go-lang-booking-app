@@ -12,17 +12,13 @@ func main() {
 	var remainingTickets int = 50
 	var bookings []string //this is a dynamic array (slice)
 
-	greetUsers(conferenceName)
+	greetUsers(conferenceName, totalTickets, remainingTickets)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
 		var lastName string
 		var email string
 		var userTickets int
-
-		// 1. Initial greeting
-		fmt.Println("Welcome to the Conference Booking System!")
-		fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
 
 		// 2. Ask user for their information
 		fmt.Print("Enter your first name: ")
@@ -88,6 +84,8 @@ func main() {
 
 }
 
-func greetUsers(confName string) {
+func greetUsers(confName string, confTickets int, remainingTickets int) {
 	fmt.Printf("Welcome to %v booking application\n", confName)
+	fmt.Println("Welcome to the Conference Booking System!")
+	fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
 }
