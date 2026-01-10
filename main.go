@@ -20,7 +20,7 @@ func main() {
 		var email string
 		var userTickets int
 
-		// 2. Ask user for their information
+		// Ask user for their information
 		fmt.Printf("We have %v tickets remaining.\n", remainingTickets)
 		fmt.Print("Enter your first name: ")
 		fmt.Scan(&firstName)
@@ -38,18 +38,20 @@ func main() {
 		var isValidName = len(firstName) >= 2 && len(lastName) >= 2
 		var isValidEmail = strings.Contains(email, "@")
 		var isValidTicketNumber = userTickets > 0 && userTickets <= remainingTickets
+
+		//city validation
 		//var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
 		//var isInValidCity := city != "Singapore" && city != "London" && city != "Berlin"
 
 		// slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
 
-		//igy jobb, mivel van first name es last name is
+		//bookings with first and last names
 
 		bookings = append(bookings, firstName+" "+lastName)
 
 		fmt.Printf("The slice length is: %v\n", len(bookings))
 
-		// 3. Logic to calculate and display results
+		// Logic to calculate and display results
 		if isValidName && isValidEmail && isValidTicketNumber {
 			remainingTickets = remainingTickets - userTickets
 
@@ -57,7 +59,7 @@ func main() {
 			fmt.Printf("A confirmation email has been sent to %v.\n", email)
 			fmt.Printf("There are %v tickets still available.\n", remainingTickets)
 
-			// call function to get first names
+			getFirstNames(bookings)
 
 			// Check if all tickets are sold out
 			if remainingTickets == 0 {
@@ -80,11 +82,13 @@ func main() {
 
 }
 
+// Function to greet users
 func greetUsers(confName string, totalTickets int) {
 	fmt.Printf("Welcome to %v booking application\n", confName)
 	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
 }
 
+// Function to get first names from bookings
 func getFirstNames(bookings []string) {
 	firstNames := []string{}
 	for _, booking := range bookings { // _ means we dont want to use that variable
