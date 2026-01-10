@@ -12,7 +12,7 @@ func main() {
 	var remainingTickets int = 50
 	var bookings []string //this is a dynamic array (slice)
 
-	greetUsers(conferenceName, totalTickets, remainingTickets)
+	greetUsers(conferenceName, totalTickets)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
@@ -21,6 +21,7 @@ func main() {
 		var userTickets int
 
 		// 2. Ask user for their information
+		fmt.Printf("We have %v tickets remaining.\n", remainingTickets)
 		fmt.Print("Enter your first name: ")
 		fmt.Scan(&firstName)
 
@@ -78,14 +79,13 @@ func main() {
 			if !isValidTicketNumber {
 				fmt.Println("The number of tickets you entered is invalid.")
 			}
-			fmt.Println("Please try again.\n")
+			fmt.Println("Please try again.")
 		}
 	}
 
 }
 
-func greetUsers(confName string, confTickets int, remainingTickets int) {
+func greetUsers(confName string, totalTickets int) {
 	fmt.Printf("Welcome to %v booking application\n", confName)
-	fmt.Println("Welcome to the Conference Booking System!")
-	fmt.Printf("There are %v tickets available in total.\n\n", remainingTickets)
+	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
 }
