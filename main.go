@@ -13,7 +13,6 @@ func main() {
 	var bookings []string //this is a dynamic array (slice)
 
 	greetUsers(conferenceName, totalTickets)
-	getFirstNames(bookings)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		var firstName string
@@ -35,10 +34,8 @@ func main() {
 		fmt.Print("How many tickets would you like to buy? ")
 		fmt.Scan(&userTickets)
 
-		//validation
-		var isValidName = len(firstName) >= 2 && len(lastName) >= 2
-		var isValidEmail = strings.Contains(email, "@")
-		var isValidTicketNumber = userTickets > 0 && userTickets <= remainingTickets
+		// Validate user input
+		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		//city validation
 		//var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
@@ -48,13 +45,12 @@ func main() {
 
 		//bookings with first and last names
 
-		bookings = append(bookings, firstName+" "+lastName)
-
-		fmt.Printf("The slice length is: %v\n", len(bookings))
-
 		// Logic to calculate and display results
 		if isValidName && isValidEmail && isValidTicketNumber {
+			bookings = append(bookings, firstName+" "+lastName)
 			remainingTickets = remainingTickets - userTickets
+
+			fmt.Printf("The slice length is: %v\n", len(bookings))
 
 			fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
 			fmt.Printf("A confirmation email has been sent to %v.\n", email)
@@ -98,5 +94,11 @@ func getFirstNames(bookings []string) []string {
 		firstNames = append(firstNames, names[0])
 	}
 	return firstNames
+}
 
+func validateUserInput(firstName string, lastName string, email string, userTickets int, remainingTickets int) (bool, bool, bool) {
+	isValidName := len(firstName) >= 2 && len(lastName) >= 2
+	isValidEmail := strings.Contains(email, "@")
+	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
+	return isValidName, isValidEmail, isValidTicketNumber
 }
