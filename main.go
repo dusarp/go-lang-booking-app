@@ -57,12 +57,7 @@ func main() {
 			fmt.Printf("A confirmation email has been sent to %v.\n", email)
 			fmt.Printf("There are %v tickets still available.\n", remainingTickets)
 
-			firstNames := []string{}
-			for _, booking := range bookings { // _ means we dont want to use that variable
-				var names = strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-			}
-			fmt.Printf("The first names of bookings so far: %v\n", firstNames)
+			// call function to get first names
 
 			// Check if all tickets are sold out
 			if remainingTickets == 0 {
@@ -88,4 +83,13 @@ func main() {
 func greetUsers(confName string, totalTickets int) {
 	fmt.Printf("Welcome to %v booking application\n", confName)
 	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
+}
+
+func getFirstNames(bookings []string) {
+	firstNames := []string{}
+	for _, booking := range bookings { // _ means we dont want to use that variable
+		var names = strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+	}
+	fmt.Printf("The first names of bookings so far: %v\n", firstNames)
 }
