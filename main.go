@@ -5,18 +5,19 @@ import (
 	"strings"
 )
 
-func main() {
-	// Define constants and variables
-	conferenceName := "Go conference"
+// Define constants and variables
+	var conferenceName := "Go conference"
 	const totalTickets int = 50
 	var remainingTickets int = 50
 	var bookings []string //this is a dynamic array (slice)
 
+func main() {
+	
 	greetUsers(conferenceName, totalTickets)
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		// Get user input
-		firstName, lastName, email, userTickets := getUserInput()
+		firstName, lastName, email, userTickets := getUserInput(remainingTickets)
 		// Validate user input
 		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
@@ -30,14 +31,7 @@ func main() {
 
 		// Logic to calculate and display results
 		if isValidName && isValidEmail && isValidTicketNumber {
-			bookings = append(bookings, firstName+" "+lastName)
-			remainingTickets = remainingTickets - userTickets
-
-			fmt.Printf("The slice length is: %v\n", len(bookings))
-
-			fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
-			fmt.Printf("A confirmation email has been sent to %v.\n", email)
-			fmt.Printf("There are %v tickets still available.\n", remainingTickets)
+			bookings, remainingTickets = bookTicket(userTickets, firstName, lastName, email, bookings, remainingTickets)
 
 			firstNames := getFirstNames(bookings)
 			fmt.Printf("The first names of bookings are: %v\n", firstNames)
@@ -86,7 +80,7 @@ func validateUserInput(firstName string, lastName string, email string, userTick
 	return isValidName, isValidEmail, isValidTicketNumber
 }
 
-func getUserInput() (string, string, string, int) {
+func getUserInput(remainingTickets int) (string, string, string, int) {
 	var firstName string
 	var lastName string
 	var email string
@@ -106,4 +100,15 @@ func getUserInput() (string, string, string, int) {
 	fmt.Print("How many tickets would you like to buy? ")
 	fmt.Scan(&userTickets)
 	return firstName, lastName, email, userTickets
+}
+
+func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []string, remainingTickets int) ([]string, int) {
+	bookings = append(bookings, firstName+" "+lastName)
+	remainingTickets = remainingTickets - userTickets
+
+	fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
+	fmt.Printf("A confirmation email has been sent to %v.\n", email)
+	fmt.Printf("There are %v tickets still available.\n", remainingTickets)
+
+	return bookings, remainingTickets
 }
