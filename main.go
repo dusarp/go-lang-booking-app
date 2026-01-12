@@ -13,7 +13,7 @@ import (
 
 func main() {
 	
-	greetUsers(conferenceName, totalTickets)
+	greetUsers()
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
 		// Get user input
@@ -58,7 +58,7 @@ func main() {
 }
 
 // Function to greet users
-func greetUsers(confName string, totalTickets int) {
+func greetUsers() {
 	fmt.Printf("Welcome to %v booking application\n", confName)
 	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
 }
