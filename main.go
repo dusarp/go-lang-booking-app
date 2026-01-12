@@ -6,13 +6,15 @@ import (
 )
 
 // Define constants and variables
-	var conferenceName := "Go conference"
-	const totalTickets int = 50
-	var remainingTickets int = 50
-	var bookings []string //this is a dynamic array (slice)
+var conferenceName = "Go conference"
+
+const totalTickets int = 50
+
+var remainingTickets int = 50
+var bookings []string //this is a dynamic array (slice)
 
 func main() {
-	
+
 	greetUsers()
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
@@ -59,7 +61,7 @@ func main() {
 
 // Function to greet users
 func greetUsers() {
-	fmt.Printf("Welcome to %v booking application\n", confName)
+	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
 }
 
@@ -73,7 +75,7 @@ func getFirstNames() []string {
 	return firstNames
 }
 
-func validateUserInput(firstName string, lastName string, email string) (bool, bool, bool) {
+func validateUserInput(firstName string, lastName string, email string, userTickets int, remainingTickets int) (bool, bool, bool) {
 	isValidName := len(firstName) >= 2 && len(lastName) >= 2
 	isValidEmail := strings.Contains(email, "@")
 	isValidTicketNumber := userTickets > 0 && userTickets <= remainingTickets
