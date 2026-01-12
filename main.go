@@ -33,8 +33,8 @@ func main() {
 		if isValidName && isValidEmail && isValidTicketNumber {
 			bookings, remainingTickets = bookTicket(userTickets, firstName, lastName, email, bookings, remainingTickets)
 
-			firstNames := getFirstNames(bookings)
-			fmt.Printf("The first names of bookings are: %v\n", firstNames)
+			firstNames := getFirstNames()
+			fmt.Printf("The first names of bookings re: %v\n", firstNames)
 
 			// Check if all tickets are sold out
 			if remainingTickets == 0 {
@@ -64,7 +64,7 @@ func greetUsers() {
 }
 
 // Function to get first names from bookings
-func getFirstNames(bookings []string) []string {
+func getFirstNames() []string {
 	firstNames := []string{}
 	for _, booking := range bookings { // _ means we dont want to use that variable
 		var names = strings.Fields(booking)
