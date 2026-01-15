@@ -1,9 +1,9 @@
 package main
 
 import (
+	"booking-app/helper"
 	"fmt"
 	"strings"
-	"booking-app/helper"
 )
 
 // Define constants and variables
@@ -99,8 +99,15 @@ func getUserInput(remainingTickets int) (string, string, string, int) {
 }
 
 func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []string, remainingTickets int) ([]string, int) {
-	bookings = append(bookings, firstName+" "+lastName)
 	remainingTickets = remainingTickets - userTickets
+
+	// create a map for a user
+	var userData = make(map[string]string)
+	userData["firstName"] = firstName
+	userData["lastName"] = lastName
+	userData["email"] = email
+
+	bookings = append(bookings, firstName+" "+lastName)
 
 	fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
 	fmt.Printf("A confirmation email has been sent to %v.\n", email)
