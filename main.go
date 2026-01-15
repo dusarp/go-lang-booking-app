@@ -107,6 +107,7 @@ func bookTicket(userTickets int, firstName string, lastName string, email string
 	userData["userTickets"] = fmt.Sprint(userTickets)
 
 	bookings = append(bookings, userData)
+	fmt.Printf("List of bookings is %v\n", bookings)
 
 	fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
 	fmt.Printf("A confirmation email has been sent to %v.\n", email)
