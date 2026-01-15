@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 	"booking-app/helper"
+)
 
 // Define constants and variables
 var conferenceName = "Go conference"
@@ -21,7 +22,7 @@ func main() {
 		// Get user input
 		firstName, lastName, email, userTickets := getUserInput(remainingTickets)
 		// Validate user input
-		isValidName, isValidEmail, isValidTicketNumber := validateUserInput(firstName, lastName, email, userTickets, remainingTickets)
+		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
 		//city validation
 		//var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
