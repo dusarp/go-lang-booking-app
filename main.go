@@ -3,7 +3,6 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
-	"strings"
 )
 
 // Define constants and variables
@@ -12,7 +11,7 @@ var conferenceName = "Go conference"
 const totalTickets int = 50
 
 var remainingTickets int = 50
-var bookings []string //this is a dynamic array (slice)
+var bookings = make([]map[string]string, 0) //slice of maps to store user data
 
 func main() {
 
@@ -70,8 +69,7 @@ func greetUsers() {
 func getFirstNames() []string {
 	firstNames := []string{}
 	for _, booking := range bookings { // _ means we dont want to use that variable
-		var names = strings.Fields(booking)
-		firstNames = append(firstNames, names[0])
+		firstNames = append(firstNames, booking["firstName"])
 	}
 	return firstNames
 }
@@ -98,7 +96,7 @@ func getUserInput(remainingTickets int) (string, string, string, int) {
 	return firstName, lastName, email, userTickets
 }
 
-func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []string, remainingTickets int) ([]string, int) {
+func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []map[string]string, remainingTickets int) ([]map[string]string, int) {
 	remainingTickets = remainingTickets - userTickets
 
 	// create a map for a user
@@ -106,8 +104,9 @@ func bookTicket(userTickets int, firstName string, lastName string, email string
 	userData["firstName"] = firstName
 	userData["lastName"] = lastName
 	userData["email"] = email
+	userData["userTickets"] = fmt.Sprint(userTickets)
 
-	bookings = append(bookings, firstName+" "+lastName)
+	bookings = append(bookings, userData)
 
 	fmt.Printf("\nSuccess! %v %v, you have booked %v tickets.\n", firstName, lastName, userTickets)
 	fmt.Printf("A confirmation email has been sent to %v.\n", email)
