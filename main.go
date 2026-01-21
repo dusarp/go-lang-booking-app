@@ -13,6 +13,13 @@ const totalTickets int = 50
 var remainingTickets int = 50
 var bookings = make([]map[string]string, 0) //slice of maps to store user data
 
+type UserData struct {
+	firstName   string
+	lastName    string
+	email       string
+	userTickets int
+}
+
 func main() {
 
 	greetUsers()
