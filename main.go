@@ -11,7 +11,7 @@ var conferenceName = "Go conference"
 const totalTickets int = 50
 
 var remainingTickets int = 50
-var bookings = make([]map[string]string, 0) //slice of maps to store user data
+var bookings = make([]UserData, 0) //slice of maps to store user data
 
 type UserData struct { //compared to Java it is a lightweight class (without inheritance)
 	firstName   string
@@ -106,12 +106,12 @@ func getUserInput(remainingTickets int) (string, string, string, int) {
 func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []map[string]string, remainingTickets int) ([]map[string]string, int) {
 	remainingTickets = remainingTickets - userTickets
 
-	// create a map for a user
-	var userData = make(map[string]string)
-	userData["firstName"] = firstName
-	userData["lastName"] = lastName
-	userData["email"] = email
-	userData["userTickets"] = fmt.Sprint(userTickets)
+	var userData = UserData{
+		firstName:   firstName,
+		lastName:    lastName,
+		email:       email,
+		userTickets: userTickets,
+	}
 
 	bookings = append(bookings, userData)
 	fmt.Printf("List of bookings is %v\n", bookings)
