@@ -122,3 +122,7 @@ func bookTicket(userTickets int, firstName string, lastName string, email string
 
 	return bookings, remainingTickets
 }
+
+func sendTicket(userTickets int, firstName string, lastName string) {
+	fmt.Printf("%v tickets for %v %v", userTickets, firstName, lastName)
+}
