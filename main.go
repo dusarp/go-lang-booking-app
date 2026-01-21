@@ -13,7 +13,7 @@ const totalTickets int = 50
 var remainingTickets int = 50
 var bookings = make([]map[string]string, 0) //slice of maps to store user data
 
-type UserData struct {
+type UserData struct { //compared to Java it is a lightweight class (without inheritance)
 	firstName   string
 	lastName    string
 	email       string
