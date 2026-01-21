@@ -1,3 +1,4 @@
+// Package main implements a conference ticket booking application.
 package main
 
 import (
@@ -6,15 +7,16 @@ import (
 	"time"
 )
 
-// Define constants and variables
-var conferenceName = "Go conference"
-
+// Conference configuration
+const conferenceName = "Go conference"
 const totalTickets int = 50
 
+// Global state
 var remainingTickets int = 50
-var bookings = make([]UserData, 0) //slice of maps to store user data
+var bookings = make([]UserData, 0)
 
-type UserData struct { //compared to Java it is a lightweight class (without inheritance)
+// UserData represents a user's booking information.
+type UserData struct {
 	firstName   string
 	lastName    string
 	email       string
@@ -22,34 +24,21 @@ type UserData struct { //compared to Java it is a lightweight class (without inh
 }
 
 func main() {
-
 	greetUsers()
 
 	for remainingTickets > 0 && len(bookings) < totalTickets {
-		// Get user input
 		firstName, lastName, email, userTickets := getUserInput(remainingTickets)
-		// Validate user input
 		isValidName, isValidEmail, isValidTicketNumber := helper.ValidateUserInput(firstName, lastName, email, userTickets, remainingTickets)
 
-		//city validation
-		//var isValidCity := city == "Singapore" || city == "London" || city == "Berlin"
-		//var isInValidCity := city != "Singapore" && city != "London" && city != "Berlin"
-
-		// slices: abstraction of an array, ha nem tudjuk elore hogy hany elemu lesz
-
-		//bookings with first and last names
-
-		// Logic to calculate and display results
 		if isValidName && isValidEmail && isValidTicketNumber {
 			bookings, remainingTickets = bookTicket(userTickets, firstName, lastName, email, bookings, remainingTickets)
 
-			//the go keyword creates a new goroutine
+			// Send ticket asynchronously using a goroutine
 			go sendTicket(userTickets, firstName, lastName, email)
 
 			firstNames := getFirstNames()
-			fmt.Printf("The first names of bookings re: %v\n", firstNames)
+			fmt.Printf("The first names of bookings are: %v\n", firstNames)
 
-			// Check if all tickets are sold out
 			if remainingTickets == 0 {
 				fmt.Println("\nAll tickets are sold out! Thank you for participating.")
 				break
@@ -67,31 +56,30 @@ func main() {
 			fmt.Println("Please try again.")
 		}
 	}
-
 }
 
-// Function to greet users
+// greetUsers displays a welcome message with conference details.
 func greetUsers() {
 	fmt.Printf("Welcome to %v booking application\n", conferenceName)
 	fmt.Printf("We have %v tickets available for this conference.\n\n", totalTickets)
 }
 
-// Function to get first names from bookings
+// getFirstNames extracts and returns all first names from the bookings slice.
 func getFirstNames() []string {
 	firstNames := []string{}
-	for _, booking := range bookings { // _ means we dont want to use that variable
+	for _, booking := range bookings {
 		firstNames = append(firstNames, booking.firstName)
 	}
 	return firstNames
 }
 
+// getUserInput prompts the user for their booking details and returns the collected information.
 func getUserInput(remainingTickets int) (string, string, string, int) {
 	var firstName string
 	var lastName string
 	var email string
 	var userTickets int
 
-	// Ask user for their information
 	fmt.Printf("We have %v tickets remaining.\n", remainingTickets)
 	fmt.Print("Enter your first name: ")
 	fmt.Scan(&firstName)
@@ -104,13 +92,16 @@ func getUserInput(remainingTickets int) (string, string, string, int) {
 
 	fmt.Print("How many tickets would you like to buy? ")
 	fmt.Scan(&userTickets)
+
 	return firstName, lastName, email, userTickets
 }
 
+// bookTicket processes a booking by adding user data and updating ticket count.
+// Returns the updated bookings slice and remaining tickets.
 func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []UserData, remainingTickets int) ([]UserData, int) {
 	remainingTickets = remainingTickets - userTickets
 
-	var userData = UserData{
+	userData := UserData{
 		firstName:   firstName,
 		lastName:    lastName,
 		email:       email,
@@ -127,9 +118,11 @@ func bookTicket(userTickets int, firstName string, lastName string, email string
 	return bookings, remainingTickets
 }
 
+// sendTicket simulates sending a ticket confirmation email to the user.
+// This function is designed to be run as a goroutine.
 func sendTicket(userTickets int, firstName string, lastName string, email string) {
-	time.Sleep(10 * time.Second)
-	var ticket = fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
+	time.Sleep(50 * time.Second)
+	ticket := fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
 	fmt.Println("####################")
 	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", ticket, email)
 	fmt.Println("####################")
