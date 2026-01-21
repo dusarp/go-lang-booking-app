@@ -3,6 +3,7 @@ package main
 import (
 	"booking-app/helper"
 	"fmt"
+	"time"
 )
 
 // Define constants and variables
@@ -125,6 +126,7 @@ func bookTicket(userTickets int, firstName string, lastName string, email string
 }
 
 func sendTicket(userTickets int, firstName string, lastName string, email string) {
+	time.Sleep(10 * time.Second)
 	var ticket = fmt.Sprintf("%v tickets for %v %v", userTickets, firstName, lastName)
 	fmt.Println("####################")
 	fmt.Printf("Sending ticket:\n %v \nto email address %v\n", ticket, email)
