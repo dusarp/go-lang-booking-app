@@ -42,7 +42,9 @@ func main() {
 		// Logic to calculate and display results
 		if isValidName && isValidEmail && isValidTicketNumber {
 			bookings, remainingTickets = bookTicket(userTickets, firstName, lastName, email, bookings, remainingTickets)
-			sendTicket(userTickets, firstName, lastName, email)
+
+			//the go keyword creates a new goroutine
+			go sendTicket(userTickets, firstName, lastName, email)
 
 			firstNames := getFirstNames()
 			fmt.Printf("The first names of bookings re: %v\n", firstNames)
