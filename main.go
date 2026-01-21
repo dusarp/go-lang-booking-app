@@ -76,7 +76,7 @@ func greetUsers() {
 func getFirstNames() []string {
 	firstNames := []string{}
 	for _, booking := range bookings { // _ means we dont want to use that variable
-		firstNames = append(firstNames, booking["firstName"])
+		firstNames = append(firstNames, booking.firstName)
 	}
 	return firstNames
 }
@@ -103,7 +103,7 @@ func getUserInput(remainingTickets int) (string, string, string, int) {
 	return firstName, lastName, email, userTickets
 }
 
-func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []map[string]string, remainingTickets int) ([]map[string]string, int) {
+func bookTicket(userTickets int, firstName string, lastName string, email string, bookings []UserData, remainingTickets int) ([]UserData, int) {
 	remainingTickets = remainingTickets - userTickets
 
 	var userData = UserData{
